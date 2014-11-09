@@ -1,0 +1,14 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <h1>Sinatra CMS Edit Page</h1>
+    <p>
+      <form action="/edit/<%= page.slug %>/submit" method="post">
+        <input type="text" name="content" value="<%= page.content %>">
+        <input type="submit" name="Submit" value="Submit">
+      </form>
+    </p>
+  </body>
+</html>

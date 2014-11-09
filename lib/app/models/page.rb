@@ -4,6 +4,14 @@ require 'sqlite3'
 Database = Sequel.sqlite("db/#{ENV['RACK_ENV']}.sqlite3")
 
 class Page
+  def self.delete(slug)
+    table.where(slug: slug).delete
+  end
+
+  def self.update(slug, content)
+    table.where(slug: slug).update(content: content)
+  end
+
   def self.create(data)
     Page.new(data).save!
   end

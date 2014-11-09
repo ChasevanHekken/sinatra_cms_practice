@@ -18,4 +18,19 @@ class CMS < Sinatra::Base
     page = Page.find_by_slug(slug)
     erb :page, :locals => {:page => page}
   end
+
+  get '/pages/?' do
+    pages = Page.all
+    erb :index, locals: { pages: pages }
+  end
+
+  get '/edit/:slug/?' do |slug|
+    page = Page.find_by_slug(slug)
+    erb :edit, :locals => {:page => page}
+  end
+
+  post '/edit/:slug/submit/?' do |slug|
+    Page.update(slug, params[:content])
+    redirect "/pages/#{slug}"
+  end
 end
